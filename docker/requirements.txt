@@ -1,0 +1,12 @@
+asciinema
+awscli
+aws-sam-cli
+docker
+snowflake-connector-python
+streamlit
+dbt-core
+dbt-postgres
+dbt-redshift
+dbt-snowflake
+dbt-bigquery
+dbt-materialize
