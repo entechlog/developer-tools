@@ -2,8 +2,8 @@ name: "Docker build and push to Docker Registry"
 
 on:
   push:
-    branches:
-      - "main"
+    # branches:
+    #   - "main"
     tags:
       - "v*"
 
