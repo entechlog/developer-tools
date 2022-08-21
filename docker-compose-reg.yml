@@ -1,0 +1,32 @@
+---
+version: '3'
+
+services:
+  developer-tools:
+    image: entechlog/developer-tools:main
+    container_name: developer-tools
+    command: 
+      - bash 
+      - -c 
+      - |
+        echo "Launching developer-tools"
+        sleep infinity
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "8085:8085"
+    volumes:
+      - type: bind
+        source: /C
+        target: /C
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    environment:
+      - TZ=Etc/GMT
+      - SAM_CLI_TELEMETRY=false
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
