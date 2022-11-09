@@ -31,7 +31,7 @@ RUN apt-get update && \
 RUN apt install -y build-essential
 
 # Install Kafka Binary
-RUN curl "https://dlcdn.apache.org/kafka/3.1.0/kafka_2.12-3.1.0.tgz" -o /tmp/kafka.tgz
+RUN curl "https://dlcdn.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz" -o /tmp/kafka.tgz
 RUN mkdir /kafka
 RUN tar -xvzf /tmp/kafka.tgz --directory /kafka --strip-components 1
 RUN rm -f /tmp/kafka.tgz
@@ -64,6 +64,11 @@ RUN apt install terraform
 # Install Java
 RUN apt install -y default-jre
 RUN apt install -y default-jdk
+
+# Install npm
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+RUN apt-get install gcc g++ make
 
 # Create ubuntu user 
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1001 ubuntu 
