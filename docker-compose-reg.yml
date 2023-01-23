@@ -3,7 +3,7 @@ version: '3'
 
 services:
   developer-tools:
-    image: entechlog/developer-tools:main
+    image: entechlog/developer-tools
     container_name: developer-tools
     command: 
       - bash 
