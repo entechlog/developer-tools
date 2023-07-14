@@ -17,6 +17,7 @@ services:
       - "3000:3000"
       - "3001:3001"
       - "8085:8085"
+      - "6789:6789" # mage-ai
     volumes:
       - type: bind
         source: /C
