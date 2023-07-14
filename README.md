@@ -3,6 +3,9 @@
 - [Instructions](#instructions)
   - [Using Docker Build](#using-docker-build)
   - [Using Docker Registry](#using-docker-registry)
+  - [Other containers](#other-containers)
+    - [Jupyter](#jupyter)
+    - [LocalStack](#localstack)
   - [Clean Resources](#clean-resources)
 
 # Overview
@@ -34,6 +37,18 @@ Uses the pre-build image `entechlog/developer-tools` from docker registry
 
 ```bash
 docker-compose -f docker-compose-reg.yml up -d --build
+```
+
+## Other containers
+
+### Jupyter
+```bash
+docker-compose -f docker-compose-jupyter.yml up -d --build
+```
+
+### LocalStack
+```bash
+docker-compose -f docker-compose-localstack.yml up -d --build
 ```
 
 ## Clean Resources

@@ -51,6 +51,13 @@ COPY requirements.txt ./
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install semgrep
+RUN pip install checkov
+
+# Install mage-ai
+RUN pip install mage-ai
+RUN pip uninstall -y pyOpenSSL
+
 # Install snowflake-snowsql
 RUN curl "https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowflake-snowsql-1.2.10-1.x86_64.rpm" -o /tmp/snowflake-snowsql.rpm
 RUN alien -i /tmp/snowflake-snowsql.rpm
@@ -69,6 +76,9 @@ RUN apt install -y default-jdk
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 RUN apt-get install gcc g++ make
+
+# Upgrade dbt 
+RUN pip install dbt-core dbt-postgres dbt-redshift dbt-snowflake dbt-bigquery dbt-materialize dbt-databricks --upgrade
 
 # Create ubuntu user 
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1001 ubuntu 

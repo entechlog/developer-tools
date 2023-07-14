@@ -11,5 +11,4 @@ dbt-snowflake
 dbt-bigquery
 dbt-materialize
 dbt-databricks
-#semgrep
 python-lambda-local
