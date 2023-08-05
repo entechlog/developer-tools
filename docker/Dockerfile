@@ -25,13 +25,15 @@ RUN apt-get update && \
     lsb-release \ 
     alien \
     apt-transport-https \
+    python-dev \
+    libpq-dev \
     ca-certificates && \
     apt-get purge -y --auto-remove
 
 RUN apt install -y build-essential
 
 # Install Kafka Binary
-RUN curl "https://dlcdn.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz" -o /tmp/kafka.tgz
+RUN curl "https://downloads.apache.org/kafka/3.5.1/kafka_2.12-3.5.1.tgz" -o /tmp/kafka.tgz
 RUN mkdir /kafka
 RUN tar -xvzf /tmp/kafka.tgz --directory /kafka --strip-components 1
 RUN rm -f /tmp/kafka.tgz
@@ -51,15 +53,18 @@ COPY requirements.txt ./
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install sqlfluff
 RUN pip install semgrep
 RUN pip install checkov
+RUN pip install sqlfluff-templater-dbt
+RUN pip install shandy-sqlfmt[jinjafmt]
 
 # Install mage-ai
 RUN pip install mage-ai
 RUN pip uninstall -y pyOpenSSL
 
 # Install snowflake-snowsql
-RUN curl "https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowflake-snowsql-1.2.10-1.x86_64.rpm" -o /tmp/snowflake-snowsql.rpm
+RUN curl "https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowflake-snowsql-1.2.27-1.x86_64.rpm" -o /tmp/snowflake-snowsql.rpm
 RUN alien -i /tmp/snowflake-snowsql.rpm
 
 # Install teraform
